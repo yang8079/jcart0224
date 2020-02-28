@@ -1,5 +1,6 @@
 package com.yh.jcartadministrationback.po;
 
+//订单附表对象
 public class OrderDetail {
     private Long orderId;
 

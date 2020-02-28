@@ -1,5 +1,6 @@
 package com.yh.jcartadministrationback.po;
 
+//地址对象
 public class Address {
     private Integer addressId;
 

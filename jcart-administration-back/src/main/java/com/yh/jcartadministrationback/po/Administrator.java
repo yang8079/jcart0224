@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.po;
 
 import java.util.Date;
 
+//用户对象
 public class Administrator {
     private Integer administratorId;
 

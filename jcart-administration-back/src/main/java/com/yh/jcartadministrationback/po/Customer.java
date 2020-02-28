@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.po;
 
 import java.util.Date;
 
+//客户对象
 public class Customer {
     private Integer customerId;
 

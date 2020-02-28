@@ -22,7 +22,6 @@ public interface ProductDetailMapper {
 
     int updateByPrimaryKey(ProductDetail record);
 
-//    custom
-
+    //批量删除
     int batchDelete(@Param("productIds") List<Integer> productIds);
 }

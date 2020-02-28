@@ -24,7 +24,7 @@ public interface ProductMapper {
 
     //批量
     int batchDelete(@Param("productIds") List<Integer> productIds);
-
+    //查询
     Page<ProductListOutDTO> search();
 
 

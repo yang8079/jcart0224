@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.po;
 
 import java.util.Date;
 
+//订单历史记录
 public class OrderHistory {
     private Long orderHistoryId;
 

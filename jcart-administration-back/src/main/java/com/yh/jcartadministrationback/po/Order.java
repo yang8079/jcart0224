@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.po;
 
 import java.util.Date;
 
+//订单对象
 public class Order {
     private Long orderId;
 

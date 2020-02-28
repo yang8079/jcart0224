@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
-
+    //注入mapper
     @Autowired
     private ProductMapper productMapper;
 
@@ -33,9 +33,10 @@ public class ProductServiceImpl implements ProductService {
     private ProductDetailMapper productDetailMapper;
 
     @Override
-    @Transactional
+    @Transactional//事物提交
+    //添加商品
     public Integer create(ProductCreateInDTO productCreateInDTO) {
-
+        //创建商品对象
         Product product = new Product();
         product.setProductCode(productCreateInDTO.getProductCode());
         product.setProductName(productCreateInDTO.getProductName());
@@ -49,23 +50,29 @@ public class ProductServiceImpl implements ProductService {
         String description = productCreateInDTO.getDescription();
         String productAbstract = description.substring(0, Math.min(100, description.length()));
         product.setProductAbstract(productAbstract);
+        //添加商品调用方法
         productMapper.insertSelective(product);
 
+        //获取商品id
         Integer productId = product.getProductId();
+        //创建商品的附表的对象
         ProductDetail productDetail = new ProductDetail();
+        //把商品的id给附表的id
         productDetail.setProductId(productId);
         productDetail.setDescription(productCreateInDTO.getDescription());
         List<String> otherPicUrls = productCreateInDTO.getOtherPicUrls();
         productDetail.setOtherPicUrls(JSON.toJSONString(otherPicUrls));
+        //添加商品调用方法
         productDetailMapper.insertSelective(productDetail);
 
-
+        ////返回商品id
         return productId;
     }
 
 
     @Override
     @Transactional
+    //修改商品
     public void update(ProductUpdateInDTO productUpdateInDTO) {
 
         Product product = new Product();
@@ -94,6 +101,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
+    //删除商品
     public void delete(Integer productId) {
         productMapper.deleteByPrimaryKey(productId);
         productDetailMapper.deleteByPrimaryKey(productId);
@@ -101,6 +109,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
+    //批量删除
     public void batchDelete(List<Integer> productIds) {
         productMapper.batchDelete(productIds);
         productDetailMapper.batchDelete(productIds);
@@ -114,6 +123,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    //回显
     public ProductShowOutDTO getById(Integer productId) {
         Product product = productMapper.selectByPrimaryKey(productId);
         ProductDetail productDetail = productDetailMapper.selectByPrimaryKey(productId);

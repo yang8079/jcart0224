@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.po;
 
 import java.util.Date;
 
+//退货对象
 public class Return {
     private Integer returnId;
 

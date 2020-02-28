@@ -22,9 +22,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/image")
 public class ImageController {
-
+    //格式
     private List<String> imageExts= Arrays.asList("jpg","jpeg","png");
 
+    //图片
     @PostMapping("/upload")
     public String upload(@RequestParam MultipartFile image) throws IOException, ClientException {
         String originalFilename = image.getOriginalFilename();

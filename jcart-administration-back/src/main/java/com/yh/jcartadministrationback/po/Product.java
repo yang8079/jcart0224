@@ -1,5 +1,6 @@
 package com.yh.jcartadministrationback.po;
 
+//商品对象
 public class Product {
     private Integer productId;
 
