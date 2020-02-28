@@ -5,8 +5,9 @@ import java.util.List;
 /**
  * @Description
  * @Author Yh
- * @Date 2020-02-25 16:52
+ * @Date 2020-02-28 19:20
  */
+
 public class ProductCreateInDTO {
     private String productCode;
     private String productName;
@@ -17,6 +18,7 @@ public class ProductCreateInDTO {
     private String mainPicUrl;
     private Integer rewordPoints;
     private Integer sortOrder;
+    private String productAbstract;
     private String description;
     private List<String> otherPicUrls;
 
@@ -107,4 +109,13 @@ public class ProductCreateInDTO {
     public void setOtherPicUrls(List<String> otherPicUrls) {
         this.otherPicUrls = otherPicUrls;
     }
+
+    public String getProductAbstract() {
+        return productAbstract;
+    }
+
+    public void setProductAbstract(String productAbstract) {
+        this.productAbstract = productAbstract;
+    }
 }
+

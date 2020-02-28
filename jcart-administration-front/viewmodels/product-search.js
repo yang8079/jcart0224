@@ -4,29 +4,29 @@ var app = new Vue({
         pageInfo: '',
         pageNum: 1
     },
-    mounted(){
+    mounted() {
         console.log('view mounted');
         this.searchProduct();
     },
-    methods:{
+    methods: {
         handlePageChange(val){
             console.log('page change');
-            this.pageNum=val;
+            this.pageNum = val;
             this.searchProduct();
         },
-        searchProduct(){
-            axios.get('/produck/search', {
+        searchProduct() {
+            axios.get('/product/search', {
                 params: {
-                  pageNum: this.pageNum
+                    pageNum: this.pageNum
                 }
-              })
-              .then(function (response) {
-                console.log(response);
-                app.pageInfo=response.data;
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .then(function (response) {
+                    console.log(response);
+                    app.pageInfo = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     }
 })
