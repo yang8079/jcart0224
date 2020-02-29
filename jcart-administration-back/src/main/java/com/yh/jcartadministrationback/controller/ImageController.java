@@ -2,10 +2,7 @@ package com.yh.jcartadministrationback.controller;
 
 import com.yh.jcartadministrationback.constant.ClientExceptionConstant;
 import com.yh.jcartadministrationback.exception.ClientException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
@@ -21,11 +18,11 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/image")
+@CrossOrigin
 public class ImageController {
-    //格式
+
     private List<String> imageExts= Arrays.asList("jpg","jpeg","png");
 
-    //图片
     @PostMapping("/upload")
     public String upload(@RequestParam MultipartFile image) throws IOException, ClientException {
         String originalFilename = image.getOriginalFilename();

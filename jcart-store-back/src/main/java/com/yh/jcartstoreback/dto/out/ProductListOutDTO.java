@@ -1,10 +1,4 @@
 package com.yh.jcartstoreback.dto.out;
-
-/**
- * @Description
- * @Author Yh
- * @Date 2020-02-26 14:42
- */
 public class ProductListOutDTO {
     private Integer productId;
     private String productCode;
@@ -70,4 +64,3 @@ public class ProductListOutDTO {
         this.mainPicUrl = mainPicUrl;
     }
 }
-

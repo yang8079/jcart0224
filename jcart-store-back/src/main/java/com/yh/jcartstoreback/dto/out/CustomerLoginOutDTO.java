@@ -1,0 +1,28 @@
+package com.yh.jcartstoreback.dto.out;
+
+/**
+ * @Description
+ * @Author Yh
+ * @Date 2020-02-29 18:06
+ */
+public class CustomerLoginOutDTO {
+    private String token;
+    private Long expireTimestamp;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Long getExpireTimestamp() {
+        return expireTimestamp;
+    }
+
+    public void setExpireTimestamp(Long expireTimestamp) {
+        this.expireTimestamp = expireTimestamp;
+    }
+}
+
