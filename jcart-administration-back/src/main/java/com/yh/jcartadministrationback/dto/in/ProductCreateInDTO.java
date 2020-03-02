@@ -118,4 +118,3 @@ public class ProductCreateInDTO {
         this.productAbstract = productAbstract;
     }
 }
-
