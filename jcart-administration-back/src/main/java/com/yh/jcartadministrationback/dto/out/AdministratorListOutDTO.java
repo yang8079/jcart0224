@@ -8,6 +8,7 @@ package com.yh.jcartadministrationback.dto.out;
 public class AdministratorListOutDTO {
     private Integer administratorId;
     private String username;
+    private String realName;
     private Byte status;
     private Long createTimestamp;
 
@@ -41,5 +42,13 @@ public class AdministratorListOutDTO {
 
     public void setCreateTimestamp(Long createTimestamp) {
         this.createTimestamp = createTimestamp;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }
