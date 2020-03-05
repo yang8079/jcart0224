@@ -55,6 +55,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductShowOutDTO getShowById(Integer productId) {
+        return null;
+    }
+
+    @Override
     public Page<ProductListOutDTO> search(Integer pageNum) {
         PageHelper.startPage(pageNum, 10);
         Page<ProductListOutDTO> page = productMapper.search();

@@ -19,5 +19,4 @@ public class ClientExceptionConstant {
     public static final String CUSTOMER_PASSWORD_INVALID_ERRCODE = "0102";
     public static final String CUSTOMER_PASSWORD_INVALID_ERRMSG = "customer password invalid";
 
-
 }

@@ -1,5 +1,10 @@
 package com.yh.jcartstoreback.po;
 
+/**
+ * @Description
+ * @Author Yh
+ * @Date 2020-03-05 10:26
+ */
 public class OrderDetail {
     private Long orderId;
 

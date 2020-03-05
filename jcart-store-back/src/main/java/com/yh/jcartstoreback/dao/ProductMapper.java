@@ -20,4 +20,5 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product record);
 
     Page<ProductListOutDTO> search();
+
 }

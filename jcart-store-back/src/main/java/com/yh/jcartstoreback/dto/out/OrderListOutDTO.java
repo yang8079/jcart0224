@@ -7,9 +7,7 @@ package com.yh.jcartstoreback.dto.out;
  */
 public class OrderListOutDTO {
     private Long orderId;
-    private Integer customerId;
-    private String customerName;
-    private Integer totalProducts;
+//  private Integer totalProducts;
     private Byte status;
     private Double totalPrice;
     private Long createTimestamp;
@@ -20,30 +18,6 @@ public class OrderListOutDTO {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
-    }
-
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public Integer getTotalProducts() {
-        return totalProducts;
-    }
-
-    public void setTotalProducts(Integer totalProducts) {
-        this.totalProducts = totalProducts;
     }
 
     public Byte getStatus() {
@@ -70,4 +44,3 @@ public class OrderListOutDTO {
         this.createTimestamp = createTimestamp;
     }
 }
-

@@ -171,7 +171,6 @@
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
 
-  <!--  custom-->
   <select id="search" resultMap="ProductListOutDTO">
     select
     <include refid="Base_Column_List" />
