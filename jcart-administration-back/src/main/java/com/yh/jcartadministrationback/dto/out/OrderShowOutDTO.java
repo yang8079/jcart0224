@@ -1,5 +1,7 @@
 package com.yh.jcartadministrationback.dto.out;
 
+import com.yh.jcartadministrationback.vo.OrderProductVO;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,7 @@ import java.util.List;
 public class OrderShowOutDTO {
     private Long orderId;
     private Integer customerId;
+    private  String customerNmae;
     private Byte status;
     private Double totalPrice;
     private Integer rewordPoints;
@@ -22,7 +25,24 @@ public class OrderShowOutDTO {
     private String invoiceAddress;
     private Double invoicePrice;
     private String comment;
-    private List<OrderProductShowOutDTO> orderProducts;
+
+    public List<OrderProductVO> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProductVO> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
+    private List<OrderProductVO> orderProducts;
+
+    public String getCustomerNmae() {
+        return customerNmae;
+    }
+
+    public void setCustomerNmae(String customerNmae) {
+        this.customerNmae = customerNmae;
+    }
 
     public Long getOrderId() {
         return orderId;
@@ -136,12 +156,5 @@ public class OrderShowOutDTO {
         this.comment = comment;
     }
 
-    public List<OrderProductShowOutDTO> getOrderProducts() {
-        return orderProducts;
-    }
-
-    public void setOrderProducts(List<OrderProductShowOutDTO> orderProducts) {
-        this.orderProducts = orderProducts;
-    }
 }
 
