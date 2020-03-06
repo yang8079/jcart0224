@@ -1,5 +1,6 @@
 package com.yh.jcartstoreback.service;
 
+import com.github.pagehelper.Page;
 import com.yh.jcartstoreback.po.Return;
 
 /**
@@ -10,6 +11,7 @@ import com.yh.jcartstoreback.po.Return;
 public interface ReturnService {
     //创建
     Integer create(Return aReturn);
-    //
+    //分页了列表
+    Page<Return> getPageCustomerId(Integer customerId,Integer pageNum);
 
 }

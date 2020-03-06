@@ -1,6 +1,8 @@
 package com.yh.jcartstoreback.dao;
 
+import com.github.pagehelper.Page;
 import com.yh.jcartstoreback.po.Return;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,4 +18,7 @@ public interface ReturnMapper {
     int updateByPrimaryKeySelective(Return record);
 
     int updateByPrimaryKey(Return record);
+
+    //列表分页
+    Page<Return> selectPageByCustomerId(@Param("customerId")Integer customerId);
 }
