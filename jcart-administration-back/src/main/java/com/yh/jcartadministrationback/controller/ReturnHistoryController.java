@@ -13,6 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/returnhistory")
+@CrossOrigin
 public class ReturnHistoryController {
 
     @GetMapping("/getListByReturnId")

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/orderhistory")
+@CrossOrigin
 public class OrderHistoryController {
 
     @Autowired
