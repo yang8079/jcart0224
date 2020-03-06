@@ -13,5 +13,6 @@ public interface ReturnService {
     Integer create(Return aReturn);
     //分页了列表
     Page<Return> getPageCustomerId(Integer customerId,Integer pageNum);
-
+    //回显
+    Return getById(Integer returnId);
 }

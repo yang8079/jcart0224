@@ -2,6 +2,7 @@ package com.yh.jcartstoreback.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.yh.jcartstoreback.dao.ReturnHistoryMapper;
 import com.yh.jcartstoreback.dao.ReturnMapper;
 import com.yh.jcartstoreback.po.Return;
 import com.yh.jcartstoreback.service.ReturnService;
@@ -32,5 +33,11 @@ public class ReturnServiceImpl implements ReturnService {
         PageHelper.startPage(pageNum,10);
         Page<Return> page = returnMapper.selectPageByCustomerId(customerId);
         return page;
+    }
+
+    @Override
+    public Return getById(Integer returnId) {
+        Return aReturn = returnMapper.selectByPrimaryKey(returnId);
+        return aReturn;
     }
 }
