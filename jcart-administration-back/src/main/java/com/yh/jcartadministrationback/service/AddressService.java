@@ -1,6 +1,9 @@
 package com.yh.jcartadministrationback.service;
 
 import com.yh.jcartadministrationback.po.Address;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Description
@@ -10,4 +13,7 @@ import com.yh.jcartadministrationback.po.Address;
 public interface AddressService {
 
     Address getById(Integer addressId);
+
+    //列表
+    List<Address> getByCustomerId( Integer customerId);
 }

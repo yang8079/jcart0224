@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @Description
  * @Author Yh
@@ -26,7 +28,17 @@ public class AddressController {
 
     @GetMapping("/getListByCustomerId")
     public List<AddressListOutDTO> getListByCustomerId(@RequestParam Integer customerId){
-        return null;
+        List<Address> addresses = addressService.getByCustomerId(customerId);
+        List<AddressListOutDTO> collect = addresses.stream().map(address -> {
+            AddressListOutDTO addressListOutDTO = new AddressListOutDTO();
+            addressListOutDTO.setAddressId(address.getAddressId());
+            addressListOutDTO.setReceiverName(address.getReceiverName());
+            addressListOutDTO.setReceiverMobile(address.getReceiverMobile());
+            addressListOutDTO.setContent(address.getContent());
+            addressListOutDTO.setTag(address.getTag());
+            return addressListOutDTO;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @GetMapping("/getById")
