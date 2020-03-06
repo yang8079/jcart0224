@@ -1,0 +1,26 @@
+package com.yh.jcartstoreback.service.impl;
+
+import com.yh.jcartstoreback.dao.ReturnMapper;
+import com.yh.jcartstoreback.po.Return;
+import com.yh.jcartstoreback.service.ReturnService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @Description
+ * @Author Yh
+ * @Date 2020-03-06 16:02
+ */
+@Service
+public class ReturnServiceImpl implements ReturnService {
+
+    @Autowired
+    private ReturnMapper returnMapper;
+
+    @Override
+    public Integer create(Return aReturn) {
+        returnMapper.insertSelective(aReturn);
+        Integer returnId = aReturn.getReturnId();
+        return returnId;
+    }
+}
