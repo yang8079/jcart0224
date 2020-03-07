@@ -1,0 +1,28 @@
+package com.yh.jcartadministrationback.service.impl;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.yh.jcartadministrationback.dao.ReturnMapper;
+import com.yh.jcartadministrationback.po.Return;
+import com.yh.jcartadministrationback.service.ReturnService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @Description
+ * @Author Yh
+ * @Date 2020-03-07 9:21
+ */
+@Service
+public class ReturnServiceImpl implements ReturnService {
+
+    @Autowired
+    private ReturnMapper returnMapper;
+
+    @Override
+    public Page<Return> search(Integer pageNum) {
+        PageHelper.startPage(pageNum,10);
+        Page<Return> page = returnMapper.search();
+        return page;
+    }
+}
