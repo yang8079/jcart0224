@@ -10,7 +10,14 @@ import com.yh.jcartstoreback.po.Customer;
 import com.yh.jcartstoreback.service.CustomerService;
 import com.yh.jcartstoreback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
+
+import javax.xml.bind.DatatypeConverter;
+import java.security.SecureRandom;
+import java.util.HashMap;
 
 /**
  * @Description
@@ -27,6 +34,17 @@ public class CustomerController {
 
     @Autowired
     private JWTUtil jwtUtil;
+
+    @Autowired
+    private SecureRandom secureRandom;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    private HashMap<String, String> emailPwdResetCodeMap = new HashMap();
 
     @PostMapping("/register")
     public Integer register(@RequestBody CustomerRegisterInDTO customerRegisterInDTO){
@@ -95,13 +113,69 @@ public class CustomerController {
     }
 
     @GetMapping("/getPwdResetCode")
-    public String getPwdResetCode(@RequestParam String email){
-        return null;
+    public void getPwdResetCode(@RequestParam String email) throws ClientException {
+        //传进email 根据email得到客户customer
+        Customer customer = customerService.getByEmail(email);
+        //customer客户为空
+        if (customer == null){
+            //抛异常没有这个客户
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRMSG);
+        }
+        //生成一个随机码
+        byte[] bytes = secureRandom.generateSeed(3);
+        //转换成16进制
+        String hex = DatatypeConverter.printHexBinary(bytes);
+        //发送邮件
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromEmail);
+        message.setTo(email);
+        message.setSubject("jcart商店端客户重置密码");
+        message.setText(hex);
+        //发送
+        mailSender.send(message);
+       //存在map里key-value
+        emailPwdResetCodeMap.put(email, hex);
     }
 
     @PostMapping("/resetPwd")
-    public void resetPwd(@RequestBody CustomerResetPwdInDTO customerResetPwdInDTO){
-
+    public void resetPwd(@RequestBody CustomerResetPwdInDTO customerResetPwdInDTO) throws ClientException {
+        //拿到数据判断邮箱有没有
+        String email = customerResetPwdInDTO.getEmail();
+        if (email == null) {
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_EMAIL_NONE_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_EMAIL_NONE_ERRMSG);
+        }
+        //拿重置码 没有报空
+        String innerResetCode = emailPwdResetCodeMap.get(email);
+        if (innerResetCode == null) {
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_INNER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_INNER_RESETCODE_NONE_ERRMSG);
+        }
+        //那外面的重置码 没有报空
+        String outerResetCode = customerResetPwdInDTO.getResetCode();
+        if (outerResetCode == null) {
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_OUTER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_OUTER_RESETCODE_NONE_ERRMSG);
+        }
+        //拿到的两个重置码 看看一样吗 不一样证明自己输入错了
+        if (!outerResetCode.equalsIgnoreCase(innerResetCode)){
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_RESETCODE_INVALID_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_RESETCODE_INVALID_ERRMSG);
+        }
+        //取数据库拿
+        Customer customer = customerService.getByEmail(email);
+        if (customer == null){
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_EMAIL_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_EMAIL_NOT_EXIST_ERRMSG);
+        }
+        //拿到新的密码
+        String newPwd = customerResetPwdInDTO.getNewPwd();
+        if (newPwd == null){
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_NEWPWD_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_NEWPWD_NOT_EXIST_ERRMSG);
+        }
+        //加密
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
+        //存到数据库
+        customer.setEncryptedPassword(bcryptHashString);
+        //更新接口
+        customerService.update(customer);
+        //重置码用过之后删除,每次都重新获取新的重置码
+        emailPwdResetCodeMap.remove(email);
     }
 
 

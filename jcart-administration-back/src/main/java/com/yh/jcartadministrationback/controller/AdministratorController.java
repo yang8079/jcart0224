@@ -47,7 +47,6 @@ public class AdministratorController {
     @Autowired
     private JavaMailSender mailSender;
 
-
     private Map<String,String> emailPwdResetCodeMap=new HashMap<>();
 
     @Value("${spring.mail.username}")
@@ -104,13 +103,17 @@ public class AdministratorController {
 
     @GetMapping("/getPwdResetCode")
     public void getPwdResetCode(@RequestParam String email){
+        //生成一个随机码
         byte[] bytes = secureRandom.generateSeed(3);
+        //转换成16进制
         String hex = DatatypeConverter.printHexBinary(bytes);
+        //发送邮件
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         message.setTo(email);
         message.setSubject("jcart管理端管理员密码重置");
         message.setText(hex);
+        //发送
         mailSender.send(message);
         //存到mq
         emailPwdResetCodeMap.put(email, hex);
@@ -130,6 +133,7 @@ public class AdministratorController {
         if (outerResetCode == null) {
             throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_PWDRESET_OUTER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_PWDRESET_OUTER_RESETCODE_NONE_ERRMSG);
         }
+        //比较重置码
         if (!outerResetCode.equalsIgnoreCase(innerResetCode)){
             throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_PWDRESET_RESETCODE_INVALID_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_PWDRESET_RESETCODE_INVALID_ERRMSG);
         }
@@ -137,14 +141,19 @@ public class AdministratorController {
         if (administrator == null){
             throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRMSG);
         }
-
+        //拿到新的密码
         String newPwd = administratorResetPwdInDTO.getNewPwd();
         if (newPwd == null){
             throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_NEWPWD_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_NEWPWD_NOT_EXIST_ERRMSG);
         }
+        //加密
         String bcryptHashString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
+        //存到数据库
         administrator.setEncryptedPassword(bcryptHashString);
+        //更新
         administratorService.update(administrator);
+        //重置码用过之后删除,每次都重新获取新的重置码
+        emailPwdResetCodeMap.remove(email);
     }
 
     @GetMapping("/getList")
