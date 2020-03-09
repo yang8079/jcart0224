@@ -6,10 +6,15 @@ package com.yh.jcartadministrationback.dto.in;
  * @Date 2020-02-25 16:52
  */
 public class ProductSearchInDTO {
+    //商品码
     private String productCode;
+    //商品名称
     private String productName;
+    //商品价格
     private Double price;
+    //商品库存量
     private Integer stockQuantity;
+    //商品状态
     private Byte status;
 
     public String getProductCode() {

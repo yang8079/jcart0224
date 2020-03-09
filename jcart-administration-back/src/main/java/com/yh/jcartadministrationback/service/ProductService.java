@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.service;
 
 import com.github.pagehelper.Page;
 import com.yh.jcartadministrationback.dto.in.ProductCreateInDTO;
+import com.yh.jcartadministrationback.dto.in.ProductSearchInDTO;
 import com.yh.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.yh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.yh.jcartadministrationback.dto.out.ProductShowOutDTO;
@@ -24,7 +25,8 @@ public interface ProductService {
     //删除多个商品
     void batchDelete(List<Integer> productIds);
     //查询商品列表
-    Page<ProductListOutDTO> search(Integer pageNum);
+    Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
+                                   Integer pageNum);
     //查询商品id回显
     ProductShowOutDTO getById(Integer productId);
 }
