@@ -15,6 +15,8 @@ public interface AdministratorService {
     Administrator getById(Integer administratorId);
 
     Administrator getByUsername(String username);
+    //邮箱
+    Administrator getByEmail(String email);
 
     Integer create(Administrator administrator);
 
