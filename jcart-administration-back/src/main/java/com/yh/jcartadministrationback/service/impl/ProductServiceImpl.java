@@ -120,7 +120,9 @@ public class ProductServiceImpl implements ProductService {
         Page<ProductListOutDTO> page = productMapper.search
         (   productSearchInDTO.getProductCode(),
             productSearchInDTO.getStatus(),
-            productSearchInDTO.getStockQuantity()
+            productSearchInDTO.getStockQuantity(),
+            productSearchInDTO.getPrice(),
+            productSearchInDTO.getProductName()
         );
         return page;
     }
