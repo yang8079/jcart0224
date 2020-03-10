@@ -12,6 +12,26 @@ public class ReturnSearchInDTO {
     private String productCode;
     private String productName;
     private Byte status;
+    //开始时间
+    private Long startTimestamp;
+    //结束时间
+    private Long endTimestamp;
+
+    public Long getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(Long startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public Long getEndTimestamp() {
+        return endTimestamp;
+    }
+
+    public void setEndTimestamp(Long endTimestamp) {
+        this.endTimestamp = endTimestamp;
+    }
 
     public Integer getReturnId() {
         return returnId;
