@@ -25,13 +25,11 @@ public interface ProductMapper {
     //批量
     int batchDelete(@Param("productIds") List<Integer> productIds);
     //查询
-    Page<ProductListOutDTO> search(
-            @Param("productCode") String productCode,
-            @Param("status") byte status,
-            @Param("stockQuantity") Integer stockQuantity,
-            @Param("price") double price,
-            @Param("productName") String productName
-    );
+    Page<ProductListOutDTO> search(@Param("productCode") String productCode,
+                                   @Param("status") Byte status,
+                                   @Param("stockQuantity") Integer stockQuantity,
+                                   @Param("price") Double price,
+                                   @Param("productName") String productName);
 
 
 
