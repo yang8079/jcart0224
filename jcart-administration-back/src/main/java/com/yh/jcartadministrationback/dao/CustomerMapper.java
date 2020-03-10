@@ -2,6 +2,7 @@ package com.yh.jcartadministrationback.dao;
 
 import com.github.pagehelper.Page;
 import com.yh.jcartadministrationback.po.Customer;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,5 +19,11 @@ public interface CustomerMapper {
 
     int updateByPrimaryKey(Customer record);
 
-    Page<Customer> search();
+    Page<Customer> search(
+           @Param("username") String username,
+           @Param("realName") String realName,
+           @Param("mobile") String mobile,
+           @Param("email") String email,
+           @Param("status") byte status
+    );
 }
