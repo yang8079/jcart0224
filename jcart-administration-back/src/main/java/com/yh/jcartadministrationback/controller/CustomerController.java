@@ -31,11 +31,11 @@ public class CustomerController {
 
     @Autowired
     private AddressService addressService;
-    
+
     @GetMapping("/search")
     public PageOutDTO<CustomerListOutDTO> search(CustomerSearchInDTO customerSearchInDTO,
-                                                 @RequestParam(required = false,defaultValue = "1") Integer pageNum){
-        Page<Customer> page = customerService.search(customerSearchInDTO,pageNum);
+                                                 @RequestParam(required = false, defaultValue = "1") Integer pageNum){
+        Page<Customer> page = customerService.search(customerSearchInDTO, pageNum);
         List<CustomerListOutDTO> customerListOutDTOS = page.stream().map(customer -> {
             CustomerListOutDTO customerListOutDTO = new CustomerListOutDTO();
             customerListOutDTO.setCustomerId(customer.getCustomerId());
@@ -47,7 +47,8 @@ public class CustomerController {
             customerListOutDTO.setCreateTimestamp(customer.getCreateTime().getTime());
             return customerListOutDTO;
         }).collect(Collectors.toList());
-        PageOutDTO<CustomerListOutDTO>  pageOutDTO= new PageOutDTO<>();
+
+        PageOutDTO<CustomerListOutDTO> pageOutDTO = new PageOutDTO<>();
 
         pageOutDTO.setTotal(page.getTotal());
         pageOutDTO.setPageSize(page.getPageSize());

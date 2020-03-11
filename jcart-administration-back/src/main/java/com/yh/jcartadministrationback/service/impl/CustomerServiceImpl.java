@@ -20,19 +20,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerMapper customerMapper;
-    //列表假分页
+    //列表分页
     @Override
     public Page<Customer> search(CustomerSearchInDTO customerSearchInDTO, Integer pageNum) {
-        PageHelper.startPage(pageNum,10);
-        Page<Customer> page = customerMapper.search(
-               customerSearchInDTO.getUsername(),
-               customerSearchInDTO.getRealName(),
-               customerSearchInDTO.getMobile(),
-               customerSearchInDTO.getEmail(),
-               customerSearchInDTO.getStatus()
-        );
+        PageHelper.startPage(pageNum, 10);
+        Page<Customer> page = customerMapper
+                .search(customerSearchInDTO.getUsername(),
+                        customerSearchInDTO.getRealName(),
+                        customerSearchInDTO.getMobile(),
+                        customerSearchInDTO.getEmail(),
+                        customerSearchInDTO.getStatus()
+                );
         return page;
     }
+
 
     //回显ID
     @Override

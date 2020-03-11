@@ -19,11 +19,10 @@ public interface CustomerMapper {
 
     int updateByPrimaryKey(Customer record);
 
-    Page<Customer> search(
-           @Param("username") String username,
-           @Param("realName") String realName,
-           @Param("mobile") String mobile,
-           @Param("email") String email,
-           @Param("status") byte status
+    Page<Customer> search(@Param("username") String username,
+                          @Param("realName") String realName,
+                          @Param("mobile") String mobile,
+                          @Param("email") String email,
+                          @Param("status") Byte status
     );
 }
