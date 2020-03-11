@@ -32,7 +32,7 @@ public class ReturnServiceImpl implements ReturnService {
                 returnSearchInDTO.getEndTimestamp() == null ? null : new Date(returnSearchInDTO.getEndTimestamp()),
                 returnSearchInDTO.getStatus(),
                 returnSearchInDTO.getProductCode(),
-                returnSearchInDTO.getProductName(),
+                returnSearchInDTO.getCustomerName(),
                 returnSearchInDTO.getProductName());
         return page;
     }
