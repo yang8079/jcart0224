@@ -35,14 +35,6 @@ public class ReturnShowOutDTO {
         this.returnId = returnId;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public Long getOrderTimestamp() {
         return orderTimestamp;
     }
@@ -162,5 +154,12 @@ public class ReturnShowOutDTO {
     public void setReturnHistories(List<ReturnHistoryListOutDTO> returnHistories) {
         this.returnHistories = returnHistories;
     }
-}
 
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+}

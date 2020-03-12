@@ -21,5 +21,4 @@ public interface ReturnHistoryMapper {
     int updateByPrimaryKey(ReturnHistory record);
 
     //历退货了列表
-    List<ReturnHistory> selectByReturnId(@Param("returnId") Integer returnId);
-}
+    List<ReturnHistory> selectByReturnId(@Param("returnId") Integer returnId);}

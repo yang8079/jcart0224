@@ -13,7 +13,7 @@
     return_history_id, return_id, time, return_status, comment, customer_notified
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from jcart_return_history
     where return_history_id = #{returnHistoryId,jdbcType=BIGINT}
@@ -104,12 +104,12 @@
     where return_history_id = #{returnHistoryId,jdbcType=BIGINT}
   </update>
 
-<!--历史退货列表-->
+  <!--  custom-->
   <select id="selectByReturnId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from jcart_return_history
     where return_id = #{returnId}
-    order by 'time' desc
+    order by `time` desc
   </select>
 </mapper>

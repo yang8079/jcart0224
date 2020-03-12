@@ -18,13 +18,13 @@ import java.util.List;
 public class ReturnHistoryServiceImpl implements ReturnHistoryService {
 
 
+
     @Autowired
     private ReturnHistoryMapper returnHistoryMapper;
 
     @Override
     public List<ReturnHistory> getByReturnId(Integer returnId) {
         List<ReturnHistory> returnHistories = returnHistoryMapper.selectByReturnId(returnId);
-
         return returnHistories;
     }
 }
