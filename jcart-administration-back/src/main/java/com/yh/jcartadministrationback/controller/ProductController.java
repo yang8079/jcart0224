@@ -9,6 +9,7 @@ import com.yh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.yh.jcartadministrationback.dto.out.ProductShowOutDTO;
 import com.yh.jcartadministrationback.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
