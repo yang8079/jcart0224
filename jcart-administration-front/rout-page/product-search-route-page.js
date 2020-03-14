@@ -1,5 +1,5 @@
-Vue.component('jc-product-search-page', {
-    template: `
+const ProductSearchRoutePage = {
+        template: `
     <div id="app">
         <el-input v-model="productCode" placeholder="请输入商品代号"></el-input>
         <el-input v-model="productName" placeholder="请输入商品名称"></el-input>
@@ -115,4 +115,4 @@ Vue.component('jc-product-search-page', {
                 });
         }
     }
-})
+}

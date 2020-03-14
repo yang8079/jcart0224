@@ -27,13 +27,15 @@ var app = new Vue({
     mounted() {
         console.log('view mounted');
 
-        var url = new URL(location.href);
-        this.productId = url.searchParams.get("productId");
+        // var url = new URL(location.href);
+        // this.productId = url.searchParams.get("productId");
+       
+        this.productId=app.jcProductId;
         if (!this.productId) {
             alert('productId is null');
             return;
         }
-
+        
         this.getProductById();
     },
     methods: {
