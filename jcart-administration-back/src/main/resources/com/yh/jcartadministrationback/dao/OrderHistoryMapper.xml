@@ -23,10 +23,10 @@
     where order_history_id = #{orderHistoryId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.yh.jcartadministrationback.po.OrderHistory">
-    insert into jcart_order_history (order_history_id, order_id, time, 
+    insert into jcart_order_history (order_history_id, order_id, time,
       order_status, comment, customer_notified
       )
-    values (#{orderHistoryId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{time,jdbcType=TIMESTAMP}, 
+    values (#{orderHistoryId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{time,jdbcType=TIMESTAMP},
       #{orderStatus,jdbcType=TINYINT}, #{comment,jdbcType=VARCHAR}, #{customerNotified,jdbcType=BIT}
       )
   </insert>

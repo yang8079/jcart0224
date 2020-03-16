@@ -27,15 +27,13 @@ var app = new Vue({
     mounted() {
         console.log('view mounted');
 
-        // var url = new URL(location.href);
-        // this.productId = url.searchParams.get("productId");
-       
-        this.productId=app.jcProductId;
+        var url = new URL(location.href);
+        this.productId = url.searchParams.get("productId");
         if (!this.productId) {
             alert('productId is null');
             return;
         }
-        
+
         this.getProductById();
     },
     methods: {
@@ -148,7 +146,6 @@ var app = new Vue({
                     app.sortOrder = product.sortOrder;
                     app.mainPicUrl = product.mainPicUrl;
                     app.productAbstract = product.productAbstract;
-                   
                     app.description = product.description;
                     tinymce.init({
                         selector: '#mytextarea'

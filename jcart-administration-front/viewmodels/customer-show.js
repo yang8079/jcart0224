@@ -18,6 +18,7 @@ var app = new Vue({
             { value: 1, label: '启用' },
             { value: 2, label: '不安全' }
         ]
+
     },
     mounted() {
         console.log('view mounted');

@@ -11,6 +11,7 @@
 
 <body>
     <div id="app">
+
         <el-input v-model="orderId" placeholder="请输入订单Id"></el-input>
         <el-input v-model="customerName" placeholder="请输入客户姓名"></el-input>
         <el-input v-model="totalPrice" placeholder="请输入金额"></el-input>
@@ -30,7 +31,7 @@
         <br>
 
         <el-button type="primary" @click="handleSearchClick">搜索</el-button>
-        <el-button type="primary" @click="handleClearClick">清空条件</el-button>    
+        <el-button type="primary" @click="handleClearClick">清空条件</el-button>
 
         <el-table :data="pageInfo.list" style="width: 100%">
             <el-table-column prop="orderId" label="订单Id">
@@ -47,12 +48,12 @@
                     {{scope.row.totalPrice.toFixed(2)}}
                 </template>
             </el-table-column>
-            <el-table-column label="下单时间">
+            <el-table-column prop="createTimestamp" label="下单时间">
                 <template slot-scope="scope">
                     {{(new Date(scope.row.createTimestamp)).toLocaleString()}}
                 </template>
             </el-table-column>
-            <el-table-column label="修改时间">
+            <el-table-column prop="updateTimestamp" label="修改时间">
                 <template slot-scope="scope">
                     {{(new Date(scope.row.updateTimestamp)).toLocaleString()}}
                 </template>
