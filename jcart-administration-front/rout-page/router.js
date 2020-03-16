@@ -4,7 +4,7 @@ const routes = [
     // { path: '/product/update/:productId', component: ProductUpdateRoutePage },
 
      
-    // { path: '/order/search', component: OrderSearchRoutePage },
+    { path: '/order/search', component: OrderSearchRoutePage }
     // { path: '/return/search', component: ReturnSearchRoutePage },
     // { path: '/administrator/index', component: AdministratorIndexRoutePage }
 ];

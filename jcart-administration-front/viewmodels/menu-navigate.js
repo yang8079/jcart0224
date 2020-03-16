@@ -2,8 +2,6 @@ var app = new Vue({
     router: router,
     el: '#app',
     data: {
-        //jcProductId:'',
-        //selectMainPage: '',
         subMenus: [
             {
                 name: '商品管理',
@@ -26,7 +24,7 @@ var app = new Vue({
                 index: '3',
                 icon: 'el-icon-s-order',
                 menuItems: [
-                    { name: '订单列表', index: '3-3', route:''},
+                    { name: '订单列表', index: '3-3', route:'/order/search'},
                     { name: '退货列表', index: '3-4', route:''}
                 ]
             },
@@ -40,20 +38,6 @@ var app = new Vue({
             }
         ]
     },
-    methods: {
-        // handleMenuItemSelect(index, indexPath) {
-        //     console.log('menu item selected', index, indexPath);
-        //     switch(index){
-        //         case '1-1':
-        //             router.push('/product/search');
-        //             break;
-        //         case '2-2':
-        //             router.push('/customer/search');
-        //             break;
-        //             default:
-        //                 break;
-        //     }
-        //     //this.selectMainPage = index;
-        //}
+    methods: {  
     }
 })
