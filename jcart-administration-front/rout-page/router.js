@@ -5,8 +5,8 @@ const routes = [
 
      
     { path: '/order/search', component: OrderSearchRoutePage },
-    { path: '/return/search', component: ReturnSearchRoutePage }
-    // { path: '/administrator/index', component: AdministratorIndexRoutePage }
+    { path: '/return/search', component: ReturnSearchRoutePage },
+    { path: '/administrator/index', component: AdministratorIndexRoutePage }
 ];
 
 const router = new VueRouter({
