@@ -32,9 +32,6 @@ class AdministratorControllerTest {
             assertEquals(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE,errCode);
         }
 
-
-
-
         administratorLoginInDTO.setUsername("yh");
         administratorLoginInDTO.setPassword("1234");
         try {
