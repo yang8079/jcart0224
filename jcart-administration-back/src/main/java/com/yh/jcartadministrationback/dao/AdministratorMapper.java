@@ -20,7 +20,7 @@ public interface AdministratorMapper {
     int updateByPrimaryKeySelective(Administrator record);
 
     int updateByPrimaryKey(Administrator record);
-
+    //获取用户名
     Administrator selectByUsername(@Param("username") String username);
 
     //邮箱

@@ -14,6 +14,7 @@ public interface AdministratorService {
 
     Administrator getById(Integer administratorId);
 
+    //获取用户名名称
     Administrator getByUsername(String username);
     //邮箱
     Administrator getByEmail(String email);
