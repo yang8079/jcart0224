@@ -9,6 +9,7 @@ import com.yh.jcartadministrationback.enumeration.AdministratorStatus;
 import com.yh.jcartadministrationback.exception.ClientException;
 import com.yh.jcartadministrationback.po.Administrator;
 import com.yh.jcartadministrationback.service.AdministratorService;
+import com.yh.jcartadministrationback.util.EmailUtil;
 import com.yh.jcartadministrationback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,7 +46,7 @@ public class AdministratorController {
     private SecureRandom secureRandom;
 
     @Autowired
-    private JavaMailSender mailSender;
+    private EmailUtil emailUtil;
 
     private Map<String,String> emailPwdResetCodeMap=new HashMap<>();
 
@@ -107,14 +108,14 @@ public class AdministratorController {
         byte[] bytes = secureRandom.generateSeed(3);
         //转换成16进制
         String hex = DatatypeConverter.printHexBinary(bytes);
-        //发送邮件
+       /* //发送邮件
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         message.setTo(email);
         message.setSubject("jcart管理端管理员密码重置");
-        message.setText(hex);
-        //发送
-        mailSender.send(message);
+        message.setText(hex);*/
+        //发送邮箱接口 异步处理更快提高调用第三方接口速度 另外开启一条线程进行处理防止阻塞
+        emailUtil.send(fromEmail,email,"jcart管理端管理员密码重置",hex);
         //存到mq
         emailPwdResetCodeMap.put(email, hex);
     }
