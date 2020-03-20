@@ -7,10 +7,12 @@ import com.yh.jcartadministrationback.dto.in.*;
 import com.yh.jcartadministrationback.dto.out.*;
 import com.yh.jcartadministrationback.enumeration.AdministratorStatus;
 import com.yh.jcartadministrationback.exception.ClientException;
+import com.yh.jcartadministrationback.mq.EmailEvent;
 import com.yh.jcartadministrationback.po.Administrator;
 import com.yh.jcartadministrationback.service.AdministratorService;
 import com.yh.jcartadministrationback.util.EmailUtil;
 import com.yh.jcartadministrationback.util.JWTUtil;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -50,6 +52,9 @@ public class AdministratorController {
 
     private Map<String,String> emailPwdResetCodeMap=new HashMap<>();
 
+    //加入springboot mq 注解 注入RocketMQTemplate
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
     @Value("${spring.mail.username}")
     private String fromEmail;
 
@@ -115,7 +120,14 @@ public class AdministratorController {
         message.setSubject("jcart管理端管理员密码重置");
         message.setText(hex);*/
         //发送邮箱接口 异步处理更快提高调用第三方接口速度 另外开启一条线程进行处理防止阻塞
-        emailUtil.send(fromEmail,email,"jcart管理端管理员密码重置",hex);
+        //emailUtil.send(fromEmail,email,"jcart管理端管理员密码重置",hex);
+        //创建mq包下的EmailEvent类
+        EmailEvent emailEvent = new EmailEvent();
+        emailEvent.setToEmail(email);
+        emailEvent.setTitle("jcart管理端管理员密码重置");
+        emailEvent.setContent(hex);
+        rocketMQTemplate.convertAndSend("SendEmail",emailEvent);
+
         //存到mq
         emailPwdResetCodeMap.put(email, hex);
     }
