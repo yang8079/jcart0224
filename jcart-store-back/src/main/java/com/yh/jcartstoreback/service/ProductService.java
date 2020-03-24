@@ -1,8 +1,10 @@
 package com.yh.jcartstoreback.service;
 
 import com.github.pagehelper.Page;
+import com.yh.jcartstoreback.dto.in.ProductSearchInDTO;
 import com.yh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.yh.jcartstoreback.dto.out.ProductShowOutDTO;
+import com.yh.jcartstoreback.po.Product;
 
 /**
  * @Description
@@ -11,11 +13,12 @@ import com.yh.jcartstoreback.dto.out.ProductShowOutDTO;
  */
 public interface ProductService {
 
-    ProductShowOutDTO getById(Integer productId);
+
+    Product getById(Integer productId);
 
     ProductShowOutDTO getShowById(Integer productId);
 
-    Page<ProductListOutDTO> search(Integer pageNum);
+    Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO, Integer pageNum);
 
 
 

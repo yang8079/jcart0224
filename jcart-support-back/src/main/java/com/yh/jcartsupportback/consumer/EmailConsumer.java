@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @Date 2020-03-20 15:56
  */
 @Component
-@RocketMQMessageListener(topic = "SendEmail", consumerGroup = "jcart-support-group01")
+//@RocketMQMessageListener(topic = "SendEmail", consumerGroup = "jcart-support-group01")
 public class EmailConsumer implements RocketMQListener<EmailEvent> {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
 
         List<OrderProductInDTO> orderProductInDTOS = orderCheckoutInDTO.getOrderProducts();
         List<OrderProductVO> orderProductVOS = orderProductInDTOS.stream().map(orderProductInDTO -> {
-            ProductShowOutDTO orderProduct = productService.getById(orderProductInDTO.getProductId());
+            Product orderProduct = productService.getById(orderProductInDTO.getProductId());
             OrderProductVO orderProductVO = new OrderProductVO();
             orderProductVO.setProductId(orderProduct.getProductId());
             orderProductVO.setProductCode(orderProduct.getProductCode());
@@ -91,6 +91,7 @@ public class OrderServiceImpl implements OrderService {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrderId(orderId);
         orderDetail.setShipMethod(orderCheckoutInDTO.getShipMethod());
+        //todo calculate ship price with ship method
         orderDetail.setShipPrice(5.0);
         Address shipAddress = addressService.getById(orderCheckoutInDTO.getShipAddressId());
         orderDetail.setShipAddress(shipAddress.getContent());
